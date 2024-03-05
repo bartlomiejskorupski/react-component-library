@@ -1,19 +1,49 @@
+:root {
+  --btn-bg-color: #29b14f;
+  --btn-pressed-bg-color: #2c8f48;
+  --btn-disabled-bg-color: #659071;
+}
+
 .button {
-  padding: 0.6em 1.2em;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--btn-bg-color);
   cursor: pointer;
-  transition: border-color 0.25s;
   border: 1px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0rem 0.1rem 0.2rem rgba(0, 0, 0, 0.75);
 
-  &.rounder {
-    border-radius: 0.5rem;
+  transition: transform 100ms;
+
+  &.round {
+    border-radius: 1.5rem;
   }
 
-  &:hover {
-    border-color: #ffffff;
+  &.text {
+    color: var(--btn-bg-color);
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &.text:active {
+    color: var(--btn-pressed-bg-color);
+    background-color: transparent;
+  }
+
+  &:hover,
+  &:focus {
+    transform: translate(0, -0.1rem);
+  }
+
+  &:active {
+    background-color: var(--btn-pressed-bg-color);
+    transform: none;
+  }
+
+  &:disabled {
+    background-color: var(--btn-disabled-bg-color);
+    transform: none;
   }
 }

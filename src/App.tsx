@@ -1,5 +1,5 @@
 import './App.css';
-import { Button } from '../';
+import { Button } from '../lib';
 import { useState } from 'react';
 
 function App() {
@@ -8,9 +8,12 @@ function App() {
   return (
     <section id="buttons-section">
       <p>Counter: {counter}</p>
-      <Button rounder onClick={() => setCounter((p) => p + 1)}>
-        Test Button
+      <Button>Normal</Button>
+      <Button round>Round</Button>
+      <Button disabled onClick={() => setCounter((p) => p + 1)}>
+        Disabled
       </Button>
+      <Button text>Text</Button>
     </section>
   );
 }
