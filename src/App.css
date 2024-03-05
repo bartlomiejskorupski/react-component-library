@@ -1,7 +1,13 @@
 #buttons-section {
   display: flex;
   flex-direction: column;
-  padding-top: 1rem;
   align-items: center;
   gap: 1rem;
+}
+
+.buttons-flex {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
