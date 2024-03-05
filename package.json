@@ -1,6 +1,6 @@
 {
   "name": "@bartlomiejskorupski/react-component-library",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "main": "dist/react-component-library.js",
   "types": "dist/index.d.ts",
