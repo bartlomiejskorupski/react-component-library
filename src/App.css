@@ -11,3 +11,11 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.light {
+  background-color: white;
+}
+
+.pad {
+  padding: 1rem;
+}

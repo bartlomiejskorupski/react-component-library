@@ -1,6 +1,6 @@
-import './App.css';
+import { Fragment, useCallback, useRef, useState } from 'react';
 import { Button } from '../lib';
-import { useCallback, useRef, useState } from 'react';
+import './App.css';
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -16,25 +16,68 @@ function App() {
     setCounter((p) => p + 1);
   }, []);
 
+  const severities = [
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'info',
+  ] as const;
+
+  const buttonCases = [
+    { label: 'Normal' },
+    { label: 'Round', round: true },
+    { label: 'Disabled', disabled: true },
+    { label: 'Text', text: true },
+    { label: 'Disabled Text', disabled: true, text: true },
+  ];
+
   return (
     <section id="buttons-section">
       <h2>Buttons</h2>
       <span>Counter: {counter}</span>
-      <div className="buttons-flex">
-        <Button onClick={handleButtonClick}>Normal</Button>
-        <Button onClick={handleButtonClick} round>
-          Round
-        </Button>
-        <Button disabled onClick={handleButtonClick}>
-          Disabled
-        </Button>
-        <Button onClick={handleButtonClick} text>
-          Text
-        </Button>
-        <Button ref={reffedRef} onClick={handleReffedClick}>
-          Reffed
-        </Button>
-      </div>
+
+      {severities.map((s) => (
+        <Fragment key={s}>
+          <h3>{s.toLocaleUpperCase()}</h3>
+          <div className="buttons-flex">
+            {buttonCases.map((c) => {
+              const { label, ...rest } = c;
+              return (
+                <Button
+                  key={c.label}
+                  onClick={handleButtonClick}
+                  {...rest}
+                  severity={s}
+                >
+                  {label}
+                </Button>
+              );
+            })}
+            <Button ref={reffedRef} onClick={handleReffedClick} severity={s}>
+              Reffed
+            </Button>
+          </div>
+          <div className="buttons-flex light pad">
+            {buttonCases.map((c) => {
+              const { label, ...rest } = c;
+              return (
+                <Button
+                  key={c.label}
+                  onClick={handleButtonClick}
+                  {...rest}
+                  severity={s}
+                >
+                  {label}
+                </Button>
+              );
+            })}
+            <Button ref={reffedRef} onClick={handleReffedClick} severity={s}>
+              Reffed
+            </Button>
+          </div>
+        </Fragment>
+      ))}
     </section>
   );
 }

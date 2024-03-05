@@ -1,7 +1,36 @@
-:root {
-  --btn-bg-color: #29b14f;
-  --btn-pressed-bg-color: #2c8f48;
-  --btn-disabled-bg-color: #659071;
+.button {
+  --btn-color: rgb(255, 255, 255);
+  --btn-text-color: rgb(36, 118, 200);
+  --btn-bg-color: rgb(36, 118, 200);
+  --btn-pressed-bg-color: rgb(27, 89, 151);
+}
+
+.button.secondary {
+  --btn-color: rgb(255, 255, 255);
+  --btn-text-color: rgb(103, 129, 141);
+  --btn-bg-color: rgb(92, 111, 119);
+  --btn-pressed-bg-color: rgb(77, 92, 98);
+}
+
+.button.success {
+  --btn-color: rgb(255, 255, 255);
+  --btn-text-color: rgb(43, 190, 85);
+  --btn-bg-color: rgb(41, 177, 79);
+  --btn-pressed-bg-color: rgb(44, 143, 72);
+}
+
+.button.danger {
+  --btn-color: rgb(255, 255, 255);
+  --btn-text-color: rgb(218, 69, 61);
+  --btn-bg-color: rgb(218, 69, 61);
+  --btn-pressed-bg-color: rgb(184, 58, 51);
+}
+
+.button.info {
+  --btn-color: rgb(255, 255, 255);
+  --btn-text-color: rgb(138, 81, 185);
+  --btn-bg-color: rgb(138, 81, 185);
+  --btn-pressed-bg-color: rgb(106, 62, 142);
 }
 
 .button {
@@ -10,40 +39,46 @@
   font-weight: 500;
   font-family: inherit;
   background-color: var(--btn-bg-color);
+  color: var(--btn-color);
   cursor: pointer;
+  user-select: none;
   border: 1px solid transparent;
   border-radius: 0.5rem;
   box-shadow: 0rem 0.1rem 0.2rem rgba(0, 0, 0, 0.75);
 
   transition: transform 100ms;
 
-  &.round {
-    border-radius: 1.5rem;
-  }
-
-  &.text {
-    color: var(--btn-bg-color);
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  &.text:active {
-    color: var(--btn-pressed-bg-color);
-    background-color: transparent;
-  }
-
   &:hover,
-  &:focus {
+  &:focus-visible {
     transform: translate(0, -0.1rem);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     background-color: var(--btn-pressed-bg-color);
     transform: none;
   }
 
   &:disabled {
-    background-color: var(--btn-disabled-bg-color);
-    transform: none;
+    opacity: 0.5;
   }
+}
+
+.button.round {
+  border-radius: 1.5rem;
+}
+
+.button.text {
+  color: var(--btn-text-color);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.button.text:active:not(:disabled) {
+  color: var(--btn-pressed-bg-color);
+  background-color: transparent;
+}
+
+.button:disabled {
+  transform: none;
+  cursor: default;
 }
