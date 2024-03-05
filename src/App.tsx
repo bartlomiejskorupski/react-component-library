@@ -1,9 +1,15 @@
 import './App.css';
 import { Button } from '../lib';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 function App() {
   const [counter, setCounter] = useState(0);
+
+  const reffedRef = useRef(null);
+
+  function handleReffedClick() {
+    console.log(reffedRef.current);
+  }
 
   return (
     <section id="buttons-section">
@@ -14,6 +20,9 @@ function App() {
         Disabled
       </Button>
       <Button text>Text</Button>
+      <Button ref={reffedRef} onClick={handleReffedClick}>
+        Reffed
+      </Button>
     </section>
   );
 }
