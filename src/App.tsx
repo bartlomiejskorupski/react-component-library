@@ -1,84 +1,37 @@
-import { Fragment, useCallback, useRef, useState } from 'react';
-import { Button } from '../lib';
+import { ChangeEvent, useCallback, useState } from 'react';
+import ButtonTest from './components/ButtonTest';
 import './App.css';
+import InputFieldTest from './components/InputFieldTest';
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const [testedComponentType, setTestedComponentType] = useState('button');
 
-  const reffedRef = useRef(null);
+  const handleTestedComponentChange = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      setTestedComponentType(e.target.value);
+    },
+    []
+  );
 
-  const handleReffedClick = useCallback(() => {
-    console.log(reffedRef.current);
-    setCounter((p) => p + 1);
-  }, []);
+  const testedMap: { [name: string]: JSX.Element } = {
+    button: <ButtonTest />,
+    input: <InputFieldTest />,
+  };
 
-  const handleButtonClick = useCallback(() => {
-    setCounter((p) => p + 1);
-  }, []);
-
-  const severities = [
-    'primary',
-    'secondary',
-    'success',
-    'danger',
-    'info',
-  ] as const;
-
-  const buttonCases = [
-    { label: 'Normal' },
-    { label: 'Round', round: true },
-    { label: 'Disabled', disabled: true },
-    { label: 'Text', text: true },
-    { label: 'Disabled Text', disabled: true, text: true },
-  ];
+  const TestedComponent = testedMap[testedComponentType];
 
   return (
-    <section id="buttons-section">
-      <h2>Buttons</h2>
-      <span>Counter: {counter}</span>
-
-      {severities.map((s) => (
-        <Fragment key={s}>
-          <h3>{s.toLocaleUpperCase()}</h3>
-          <div className="buttons-flex">
-            {buttonCases.map((c) => {
-              const { label, ...rest } = c;
-              return (
-                <Button
-                  key={c.label}
-                  onClick={handleButtonClick}
-                  {...rest}
-                  severity={s}
-                >
-                  {label}
-                </Button>
-              );
-            })}
-            <Button ref={reffedRef} onClick={handleReffedClick} severity={s}>
-              Reffed
-            </Button>
-          </div>
-          <div className="buttons-flex light pad">
-            {buttonCases.map((c) => {
-              const { label, ...rest } = c;
-              return (
-                <Button
-                  key={c.label}
-                  onClick={handleButtonClick}
-                  {...rest}
-                  severity={s}
-                >
-                  {label}
-                </Button>
-              );
-            })}
-            <Button ref={reffedRef} onClick={handleReffedClick} severity={s}>
-              Reffed
-            </Button>
-          </div>
-        </Fragment>
-      ))}
-    </section>
+    <>
+      <select
+        name="testedComponent"
+        id="testedComponentSelect"
+        onChange={handleTestedComponentChange}
+      >
+        <option value="button">Button</option>
+        <option value="input">Input</option>
+      </select>
+      {TestedComponent}
+    </>
   );
 }
 

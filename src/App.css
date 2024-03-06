@@ -5,6 +5,13 @@
   gap: 1rem;
 }
 
+#input-field-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .buttons-flex {
   display: flex;
   gap: 0.5rem;
@@ -18,4 +25,10 @@
 
 .pad {
   padding: 1rem;
+}
+
+#testedComponentSelect {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
 }
