@@ -1,8 +1,9 @@
-import { ForwardedRef, forwardRef, memo } from 'react';
+import { ForwardedRef, forwardRef, memo, useMemo } from 'react';
 import styles from './styles.module.css';
 
 type InputFieldProps = {
   className?: string;
+  errorMessage?: string;
 };
 
 const InputField = memo(
@@ -10,9 +11,14 @@ const InputField = memo(
     props: InputFieldProps,
     ref: ForwardedRef<HTMLInputElement>
   ) {
-    return (
-      <input ref={ref} className={`${props.className ?? ''} ${styles.input}`} />
-    );
+    const { className, errorMessage } = props;
+
+    const classes = useMemo(() => {
+      const classList = [className, styles.input, errorMessage && 'error'];
+      return classList.filter((v) => v !== undefined).join(' ');
+    }, [className, errorMessage]);
+
+    return <input ref={ref} className={classes} />;
   })
 );
 
