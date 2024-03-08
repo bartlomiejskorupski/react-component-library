@@ -1,8 +1,18 @@
+.container {
+}
+
 .input {
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: inherit;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  width: 100%;
   padding: 0.7rem 1.2rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+}
+
+.container label {
+  display: block;
+  cursor: pointer;
+  color: light-dark(#333, #efefec);
 }
