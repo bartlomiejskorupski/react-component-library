@@ -79,6 +79,17 @@ export default function ButtonTest() {
           </div>
         </Fragment>
       ))}
+      <div className="buttons-flex">
+        <Button onClick={handleButtonClick} size="small">
+          Small
+        </Button>
+        <Button onClick={handleButtonClick} size="normal">
+          Normal
+        </Button>
+        <Button onClick={handleButtonClick} size="big">
+          Big
+        </Button>
+      </div>
     </section>
   );
 }
