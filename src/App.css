@@ -8,8 +8,10 @@
 #input-field-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 1rem;
+  max-width: 400px;
+  margin: auto;
 }
 
 .buttons-flex {

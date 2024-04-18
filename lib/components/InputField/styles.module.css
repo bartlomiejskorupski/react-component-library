@@ -1,4 +1,9 @@
 .container {
+  --error-color: rgb(244, 106, 106);
+}
+
+.container small {
+  color: var(--error-color);
 }
 
 .input {
@@ -15,4 +20,8 @@
   display: block;
   cursor: pointer;
   color: light-dark(#333, #efefec);
+}
+
+.error {
+  border: 1px solid var(--error-color);
 }

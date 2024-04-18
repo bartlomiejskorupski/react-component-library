@@ -1,10 +1,4 @@
-import {
-  ForwardedRef,
-  InputHTMLAttributes,
-  forwardRef,
-  memo,
-  useMemo,
-} from 'react';
+import { ForwardedRef, InputHTMLAttributes, forwardRef, memo } from 'react';
 import styles from './styles.module.css';
 
 type InputFieldProps = {
@@ -15,20 +9,28 @@ type InputFieldProps = {
 
 const InputField = memo(
   forwardRef(function InputField(
-    props: InputFieldProps,
+    { className = '', label, id, name, errorMessage, ...rest }: InputFieldProps,
     ref: ForwardedRef<HTMLInputElement>
   ) {
-    const { className, label, id, name, errorMessage, ...rest } = props;
+    const containerClasses = [styles.container, className]
+      .filter((v) => v)
+      .join(' ');
 
-    const classes = useMemo(() => {
-      const classList = [className, styles.input, errorMessage && 'error'];
-      return classList.filter((v) => v !== undefined).join(' ');
-    }, [className, errorMessage]);
+    const inputClasses = [styles.input, errorMessage && styles.error]
+      .filter((v) => v)
+      .join(' ');
 
     return (
-      <div className={styles.container}>
+      <div className={containerClasses}>
         <label htmlFor={id}>{label}</label>
-        <input id={id} name={name} ref={ref} className={classes} {...rest} />
+        <input
+          id={id}
+          name={name}
+          ref={ref}
+          className={inputClasses}
+          {...rest}
+        />
+        {errorMessage && <small>{errorMessage}</small>}
       </div>
     );
   })
